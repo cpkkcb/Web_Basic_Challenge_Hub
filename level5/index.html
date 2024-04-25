@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Level 5</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 300px; margin: 100px auto; padding: 20px; background: white; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+        .hidden { display: none; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 4px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 10px; border: none; background: #5cb85c; color: white; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #4cae4c; }
+    </style>
+    <script type="text/javascript" src="config.js" charset="utf-8"></script>
+</head>
+<body>
+        <div class="container">
+        <h2>办公系统登录</h2>
+        <input type="text" id="username" placeholder="Username" required onkeydown="onKeyDown(event)">
+        <input type="password" id="password" placeholder="Password" required onkeydown="onKeyDown(event)">
+        <button onclick="login()">登录</button>
+        <div id="flagContainer" class="hidden"></div>
+    </div>
+
+    <!-- 测试账号密码如下，上线后记得删除！ -->
+    <!-- USERNAME: admin -->
+    <!-- PASSWORD: secret -->
+</body>
+</html>

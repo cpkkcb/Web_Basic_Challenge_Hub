@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Level 7</title>
+    <style>
+        /* ... 省略CSS样式 ... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>CTF Challenge - UserAgent Check</h2>
+        <p id="userAgentInfo">您的UserAgent信息将显示在这里。</p>
+        <p id="message">请在手机上访问以获取flag。</p>
+        <div id="flagContainer" class="hidden">
+            <strong>Flag:</strong> <span id="flag"></span>
+        </div>
+    </div>
+
+    <script>
+        // 检测UserAgent并显示信息
+        function displayUserAgent() {
+            var userAgentInfo = document.getElementById('userAgentInfo');
+            userAgentInfo.textContent = '您的UserAgent信息: ' + navigator.userAgent;
+
+            var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            var message = document.getElementById('message');
+            if (isMobile) {
+                message.textContent = '您正在使用手机访问。';
+            } else {
+                message.textContent = '请在手机上访问以获取flag。';
+            }
+        }
+
+        // 页面加载时执行
+        displayUserAgent();
+
+        // 检查UserAgent并发送请求（仅当使用手机访问时）
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            var xhr = new XMLHttpRequest();
+            var flagContainer = document.getElementById('flagContainer');
+            var flag = document.getElementById('flag');
+            xhr.open('GET', 'useragent_challenge.php', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    flag.textContent = xhr.responseText;
+                    flagContainer.classList.remove('hidden');
+                }
+            };
+            xhr.setRequestHeader('User-Agent', navigator.userAgent);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
